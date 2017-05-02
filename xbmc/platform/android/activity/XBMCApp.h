@@ -230,6 +230,7 @@ protected:
   bool AcquireAudioFocus();
   bool ReleaseAudioFocus();
   static void RequestVisibleBehind(bool requested);
+  static void RequestPictureInPictureMode();
 
 private:
   static CXBMCApp* m_xbmcappinstance;
@@ -253,6 +254,7 @@ private:
   static IInputDeviceCallbacks* m_inputDeviceCallbacks;
   static IInputDeviceEventHandler* m_inputDeviceEventHandler;
   static bool m_hasReqVisible;
+  static bool m_hasPIP;
   bool m_videosurfaceInUse;
   bool m_firstrun;
   bool m_exiting;

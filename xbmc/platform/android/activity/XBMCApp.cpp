@@ -129,6 +129,7 @@ bool CXBMCApp::m_hdmiPlugged = true;
 IInputDeviceCallbacks* CXBMCApp::m_inputDeviceCallbacks = nullptr;
 IInputDeviceEventHandler* CXBMCApp::m_inputDeviceEventHandler = nullptr;
 bool CXBMCApp::m_hasReqVisible = false;
+bool CXBMCApp::m_hasPIP = false;
 CCriticalSection CXBMCApp::m_applicationsMutex;
 std::vector<androidPackage> CXBMCApp::m_applications;
 
@@ -492,6 +493,16 @@ void CXBMCApp::RequestVisibleBehind(bool requested)
 
   m_hasReqVisible = requestVisibleBehind(requested);
   CLog::Log(LOGDEBUG, "Visible Behind request: %s", m_hasReqVisible ? "true" : "false");
+}
+
+void CXBMCApp::RequestPictureInPictureMode()
+{
+  // PIP and VisbleBehind are exclusive
+  if (m_hasReqVisible)
+    RequestVisibleBehind(false);
+
+  enterPictureInPictureMode();
+  CLog::Log(LOGDEBUG, "Entering PIP mode");
 }
 
 bool CXBMCApp::IsHeadsetPlugged()
@@ -1243,6 +1254,7 @@ void CXBMCApp::onMultiWindowModeChanged(bool isInMultiWindowMode)
 void CXBMCApp::onPictureInPictureModeChanged(bool isInPictureInPictureMode)
 {
   android_printf("%s: %s", __PRETTY_FUNCTION__, isInPictureInPictureMode ? "true" : "false");
+  m_hasPIP = isInPictureInPictureMode;
 }
 
 int CXBMCApp::WaitForActivityResult(const CJNIIntent &intent, int requestCode, CJNIIntent &result)
