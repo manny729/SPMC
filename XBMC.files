@@ -5959,6 +5959,8 @@ system/peripherals.xml
 system/playercorefactory.xml
 system/X10-Lola-IRSSmap.xml
 tools/android/packaging/xbmc/AndroidManifest.xml.in
+tools/android/packaging/xbmc/src/org/xbmc/kodi/XBMCMainView.java.in
+tools/android/packaging/xbmc/src/org/xbmc/kodi/XBMCProjection.java.in
 tools/depends/target/android-sources-ics/libbinder.cpp
 tools/depends/target/android-sources-ics/libcutils.c
 tools/depends/target/android-sources-ics/libgui.cpp
@@ -6149,6 +6151,8 @@ xbmc/network/android/ZeroconfAndroid.h
 xbmc/network/android/ZeroconfBrowserAndroid.cpp
 xbmc/network/android/ZeroconfBrowserAndroid.h
 xbmc/platform/android/activity/CMakeLists.txt
+xbmc/platform/android/activity/JNIXBMCMainView.cpp
+xbmc/platform/android/activity/JNIXBMCMainView.h
 xbmc/platform/android/activity/android_main.cpp
 xbmc/platform/android/activity/AndroidExtra.h
 xbmc/platform/android/activity/AndroidFeatures.cpp
