@@ -2028,7 +2028,7 @@ bool CApplication::OnAction(const CAction &action)
   if (action.GetID() == ACTION_DROID_PIP)
   {
     if (CJNIBase::GetSDKVersion() >= 24)
-      CXBMCApp::get()->enterPictureInPictureMode();
+      CXBMCApp::get()->RequestPictureInPictureMode();
     else
     {
       if (SwitchToFullScreen())

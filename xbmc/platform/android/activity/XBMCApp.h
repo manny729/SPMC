@@ -219,6 +219,9 @@ public:
   // Application slow ping
   void ProcessSlow();
 
+  //PIP
+  static void RequestPictureInPictureMode();
+
   static bool WaitVSync(unsigned int milliSeconds);
   static uint64_t GetVsyncTime() { return m_vsynctime; }
 
@@ -233,7 +236,6 @@ protected:
   bool AcquireAudioFocus();
   bool ReleaseAudioFocus();
   static void RequestVisibleBehind(bool requested);
-  static void RequestPictureInPictureMode();
 
 private:
   static CXBMCApp* m_xbmcappinstance;

@@ -131,7 +131,7 @@ bool CGUIWindowFullScreen::OnAction(const CAction &action)
 #if defined TARGET_ANDROID
     if (CJNIBase::GetSDKVersion() >= 24)
     {
-      CXBMCApp::get()->enterPictureInPictureMode();
+      CXBMCApp::get()->RequestPictureInPictureMode();
       break;
     }
 #endif
