@@ -260,16 +260,6 @@ void CXBMCApp::onPause()
 {
   android_printf("%s: ", __PRETTY_FUNCTION__);
 
-  if (g_application.m_pPlayer->IsPlaying())
-  {
-    if (g_application.m_pPlayer->HasVideo())
-    {
-      if (!g_application.m_pPlayer->IsPaused() && !m_hasReqVisible)
-        CApplicationMessenger::GetInstance().SendMsg(TMSG_GUI_ACTION, WINDOW_INVALID, -1, static_cast<void*>(new CAction(ACTION_PAUSE)));
-    }
-    m_mediaSession->activate(true);
-  }
-
 #if defined(HAS_LIBAMCODEC)
   if (aml_permissions())
   {
@@ -287,6 +277,15 @@ void CXBMCApp::onPause()
 void CXBMCApp::onStop()
 {
   android_printf("%s: ", __PRETTY_FUNCTION__);
+
+  if (g_application.m_pPlayer->IsPlaying())
+  {
+    if (g_application.m_pPlayer->HasVideo())
+    {
+      if (!g_application.m_pPlayer->IsPaused() && !m_hasReqVisible)
+        CApplicationMessenger::GetInstance().SendMsg(TMSG_GUI_ACTION, WINDOW_INVALID, -1, static_cast<void*>(new CAction(ACTION_PAUSE)));
+    }
+  }
 }
 
 void CXBMCApp::onDestroy()
@@ -364,7 +363,7 @@ void CXBMCApp::Initialize()
   for (int i=0; i<5; ++i)
     m_texturePool.push_back(texture_ids[i]);
 
-  g_application.m_ServiceManager->GetAnnouncementManager().AddAnnouncer(CXBMCApp::get());  
+  g_application.m_ServiceManager->GetAnnouncementManager().AddAnnouncer(CXBMCApp::get());
 }
 
 void CXBMCApp::Deinitialize()
@@ -709,6 +708,8 @@ CPoint CXBMCApp::GetDroidToGuiRatio()
 
 void CXBMCApp::OnPlayBackStarted()
 {
+  CLog::Log(LOGDEBUG, "%s", __PRETTY_FUNCTION__);
+
   m_mediaSession->activate(true);
   CJNIMediaMetadataBuilder builder;
   builder
@@ -719,7 +720,7 @@ void CXBMCApp::OnPlayBackStarted()
 //      .putString(CJNIMediaMetadata::METADATA_KEY_DISPLAY_ICON_URI, thumb)
 //      .putString(CJNIMediaMetadata::METADATA_KEY_ALBUM_ART_URI, thumb)
       ;
-  
+
   std::string thumb;
   if (g_application.m_pPlayer->HasVideo())
   {
@@ -759,12 +760,16 @@ void CXBMCApp::OnPlayBackStarted()
 
 void CXBMCApp::OnPlayBackPaused()
 {
+  CLog::Log(LOGDEBUG, "%s", __PRETTY_FUNCTION__);
+
   RequestVisibleBehind(false);
   m_xbmcappinstance->ReleaseAudioFocus();
 }
 
 void CXBMCApp::OnPlayBackStopped()
 {
+  CLog::Log(LOGDEBUG, "%s", __PRETTY_FUNCTION__);
+
   RequestVisibleBehind(false);
   CAndroidKey::SetHandleMediaKeys(false);
   m_mediaSession->activate(false);
