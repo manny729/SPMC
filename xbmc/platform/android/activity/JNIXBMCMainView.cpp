@@ -99,8 +99,11 @@ void CJNIXBMCMainView::_surfaceDestroyed(JNIEnv* env, jobject thiz, jobject hold
 
 void CJNIXBMCMainView::attach(const jobject& thiz)
 {
-  m_object = jhobject(thiz);
-  m_object.setGlobal();
+  if (!m_object)
+  {
+    m_object = jhobject(thiz);
+    m_object.setGlobal();
+  }
 }
 
 void CJNIXBMCMainView::surfaceChanged(CJNISurfaceHolder holder, int format, int width, int height)

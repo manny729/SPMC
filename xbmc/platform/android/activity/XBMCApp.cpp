@@ -160,6 +160,7 @@ CXBMCApp::CXBMCApp(ANativeActivity* nativeActivity)
   m_mainView.reset(new CJNIXBMCMainView(this));
   m_firstrun = true;
   m_exiting = false;
+  android_printf("CXBMCApp: Created");
 }
 
 CXBMCApp::~CXBMCApp()
