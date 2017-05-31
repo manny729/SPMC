@@ -9190,6 +9190,8 @@ xbmc/windows/GUIWindowScreensaver.cpp
 xbmc/windows/GUIWindowScreensaver.h
 xbmc/windows/GUIWindowScreensaverDim.cpp
 xbmc/windows/GUIWindowScreensaverDim.h
+xbmc/windows/GUIWindowSplash.cpp
+xbmc/windows/GUIWindowSplash.h
 xbmc/windows/GUIWindowStartup.cpp
 xbmc/windows/GUIWindowStartup.h
 xbmc/windows/GUIWindowSystemInfo.cpp
